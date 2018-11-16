@@ -1,0 +1,86 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="Content/bootstrap.css" rel="stylesheet" />
+   
+    <title></title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">ODDO Front</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#" id="jquery">JQuery Ajax <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">KnockoutJS</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">KendoUIJS</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">KendoGrid</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">KnockoutJS/KendoGrid</a>
+                </li>
+            </ul>
+
+        </div>
+    </nav>
+
+
+    <div class=" container mt-4">
+        <table class="table border table-striped offset-2 col-8">
+            <thead>
+                <tr>
+                    <th scope="col">Numero</th>
+                    <th scope="col">Propiétaire</th>
+                    <th scope="col">Solde</th>
+                </tr>
+            </thead>
+            <tbody id="tab_body">
+                <tr>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td>@fat</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <script src="Scripts/jquery-3.0.0.min.js"></script>
+
+    <script src="Scripts/bootstrap.min.js"></script>
+    <script>
+
+        $(document).ready(function () {
+
+            $("#jquery").click(function () {
+                $.ajax({
+
+                    url: "http://localhost:3586/api/comptes",
+                    accepts: "application/json",
+                    success: function (resultat) {
+                        $.each(resultat, function (index, value) {
+                            $("#tab_body").append(`
+                                <tr>
+                                  <td>${value.Numero}</td>
+                                  <td>${value.Proprietaire}</td>
+                                  <td>${value.Solde}</td>
+                                  </tr>`);
+                        })
+
+                    }
+                })
+            })
+        })
+    </script>
+</body>
+</html>
